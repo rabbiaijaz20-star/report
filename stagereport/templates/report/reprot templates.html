@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stage Report</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'report:dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'report:create_profile' %}">Create Profile</a></li>
+                <li><a href="{% url 'report:show_create' %}">Create Show</a></li>
+                <li><a href="{% url 'report:feedback_create' %}">Feedback</a></li>
+                <li><a href="{% url 'report:theater_create' %}">Theater Setup</a></li>
+                <li><a href="{% url 'report:logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'report:login' %}">Login</a></li>
+                <li><a href="{% url 'report:register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        {% block content %}
+        <!-- Page-specific content will go here -->
+        {% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Stage Report © 2025</p>
+    </footer>
+
+</body>
+</html>

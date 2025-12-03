@@ -1,0 +1,51 @@
+{% extends 'report/base.html' %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>Register</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Register</button>
+    </form>
+
+    <p>Already have an account? 
+        <a href="{% url 'report:login' %}">Login here</a>
+    </p>
+</div>
+
+<style>
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.login-container .btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.login-container .btn:hover {
+    background-color: #0056b3;
+}
+.login-container p {
+    text-align: center;
+    margin-top: 15px;
+}
+</style>
+{% endblock %}

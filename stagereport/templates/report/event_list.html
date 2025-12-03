@@ -1,0 +1,39 @@
+{% extends 'report/base.html' %}
+{% load static %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+<h2>All Events</h2>
+
+<a href="{% url 'report:event_create' %}" class="btn">Add New Event</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Venue</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.title }}</td>
+            <td>{{ event.date|date:"M d, Y H:i" }}</td>
+            <td>{{ event.venue }}</td>
+            <td>
+                <a href="{% url 'report:event_detail' event.pk %}">View</a> |
+                <a href="{% url 'report:event_update' event.pk %}">Edit</a> |
+                <a href="{% url 'report:event_delete' event.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No events found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

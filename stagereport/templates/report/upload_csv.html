@@ -1,0 +1,14 @@
+{% extends 'report/base.html' %}
+{% load static %}
+
+{% block title %}Upload CSV{% endblock %}
+
+{% block content %}
+<h2>Upload CSV File</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Upload</button>
+</form>
+{% endblock %}

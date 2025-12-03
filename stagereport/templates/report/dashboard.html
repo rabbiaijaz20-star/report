@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aventra Dashboard</title>
+
+    <!-- Newspaper-style font -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Gothic style font for header -->
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            font-family: 'Libre Baskerville', 'Times New Roman', serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            color: #222;
+        }
+
+        h1 {
+            font-family: 'UnifrakturCook', 'Times New Roman', serif;
+            text-align: center;
+            font-size: 60px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        h1::after {
+            content: "";
+            display: block;
+            width: 220px;
+            height: 3px;
+            background-color: #222;
+            margin: 10px auto;
+        }
+
+        .welcome {
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .welcome a.btn {
+            padding: 6px 12px;
+            background-color: #777;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+
+        .welcome a.btn:hover {
+            background-color: #555;
+        }
+
+        .dashboard-description {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 40px;
+            color: #555;
+        }
+
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .dashboard-block {
+            background-color: #e8e8e8;
+            padding: 20px;
+            width: 250px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .dashboard-block:hover {
+            transform: translateY(-5px);
+            background-color: #d4d4d4;
+        }
+
+        .dashboard-block h2 {
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        .dashboard-block p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .dashboard-block a.btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 18px;
+            background-color: #777;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .dashboard-block a.btn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎭 Aventra</h1>
+
+    <div class="welcome">
+        Welcome, {{ request.user.username }}!
+        <a href="{% url 'logout' %}" class="btn">Logout</a>
+        <!-- Admin button -->
+        {% if request.user.is_staff %}
+            <a href="{% url 'admin:index' %}" class="btn">Admin</a>
+        {% endif %}
+    </div>
+
+    <p class="dashboard-description">Access an intuitive dashboard for quick insights</p>
+
+    <div class="dashboard">
+
+        <!-- Profile -->
+        <div class="dashboard-block">
+            <h2>Create Profile</h2>
+            <p>Manage your personal details and settings.</p>
+            <a href="{% url 'report:create_profile' %}" class="btn">Go</a>
+        </div>
+
+        <!-- Shows -->
+        <div class="dashboard-block">
+            <h2>Create Show</h2>
+            <p>Add and manage new shows for the theater.</p>
+            <a href="{% url 'report:show_create' %}" class="btn">Go</a>
+        </div>
+
+        <div class="dashboard-block">
+            <h2>Show List</h2>
+            <p>View and manage all shows.</p>
+            <a href="{% url 'report:show_list' %}" class="btn">Go</a>
+        </div>
+
+        <!-- Events -->
+        <div class="dashboard-block">
+            <h2>Create Event</h2>
+            <p>Add a new event for your shows.</p>
+            <a href="{% url 'report:event_create' %}" class="btn">Go</a>
+        </div>
+
+        <div class="dashboard-block">
+            <h2>Event List</h2>
+            <p>View and manage all events.</p>
+            <a href="{% url 'report:event_list' %}" class="btn">Go</a>
+        </div>
+
+        <!-- Tickets -->
+        <div class="dashboard-block">
+            <h2>Create Ticket</h2>
+            <p>Add new tickets for events.</p>
+            <a href="{% url 'report:ticket_create' %}" class="btn">Go</a>
+        </div>
+
+        <div class="dashboard-block">
+            <h2>Tickets</h2>
+            <p>View and manage all tickets.</p>
+            <a href="{% url 'report:ticket_list' %}" class="btn">Go</a>
+        </div>
+
+        <!-- Feedback -->
+        <div class="dashboard-block">
+            <h2>Feedback</h2>
+            <p>View feedback from users.</p>
+            <a href="{% url 'report:feedback_list' %}" class="btn">Go</a>
+        </div>
+
+        <div class="dashboard-block">
+            <h2>Create Feedback</h2>
+            <p>Add feedback manually.</p>
+            <a href="{% url 'report:feedback_create' %}" class="btn">Go</a>
+        </div>
+
+        <!-- Theaters -->
+        <div class="dashboard-block">
+            <h2>Create Theater</h2>
+            <p>Add a new theater to the system.</p>
+            <a href="{% url 'report:theater_create' %}" class="btn">Go</a>
+        </div>
+
+        <div class="dashboard-block">
+            <h2>Theaters</h2>
+            <p>View and manage all theaters.</p>
+            <a href="{% url 'report:theater_list' %}" class="btn">Go</a>
+        </div>
+
+        <!-- CSV Upload -->
+        <div class="dashboard-block">
+            <h2>CSV Upload</h2>
+            <p>Upload data via CSV files.</p>
+            <a href="{% url 'report:csv_upload' %}" class="btn">Go</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends "report/base.html" %}
+{% block content %}
+
+<h2>Create New Show</h2>
+<div class="card">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Create Show</button>
+    </form>
+</div>
+
+<a href="{% url 'report:show_list' %}" class="btn btn-secondary mt-2">Back to Shows</a>
+
+{% endblock %}

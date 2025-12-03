@@ -1,0 +1,37 @@
+ 
+{% extends 'report/base.html' %}
+{% load static %}
+
+{% block title %}Theaters{% endblock %}
+
+{% block content %}
+<h2>All Theaters</h2>
+
+<a href="{% url 'report:theater_create' %}" class="btn">Add New Theater</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for theater in theaters %}
+        <tr>
+            <td>{{ theater.name }}</td>
+            <td>{{ theater.location }}</td>
+            <td>
+                <a href="{% url 'report:theater_update' theater.pk %}">Edit</a> |
+                <a href="{% url 'report:theater_delete' theater.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No theaters found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'report/base.html' %}
+{% load static %}
+
+{% block title %}{{ show.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ show.title }}</h2>
+
+<p><strong>Theater:</strong> {{ show.theater.name }}</p>
+<p><strong>Date:</strong> {{ show.date|date:"M d, Y H:i" }}</p>
+
+<a href="{% url 'show_update' show.pk %}" class="btn">Edit Show</a>
+<a href="{% url 'show_delete' show.pk %}" class="btn">Delete Show</a>
+<a href="{% url 'show_list' %}" class="btn">Back to Shows</a>
+{% endblock %}

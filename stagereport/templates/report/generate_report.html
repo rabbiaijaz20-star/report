@@ -1,0 +1,13 @@
+{% extends "report/base.html" %}
+{% block content %}
+
+<h2>Report for {{ show.title }}</h2>
+
+<div class="card">
+    <p><strong>Total Tickets Sold:</strong> {{ report.total_tickets }}</p>
+    <p><strong>Total Revenue:</strong> {{ report.total_revenue }}</p>
+</div>
+
+<a href="{% url 'report:show_details' show.id %}" class="btn btn-secondary">Back to Show Details</a>
+
+{% endblock %}

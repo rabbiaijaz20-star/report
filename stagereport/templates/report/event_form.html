@@ -1,0 +1,14 @@
+{% extends 'report/base.html' %}
+{% load static %}
+
+{% block title %}Create / Edit Event{% endblock %}
+
+{% block content %}
+<h2>Create / Edit Event</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Save Event</button>
+</form>
+{% endblock %}

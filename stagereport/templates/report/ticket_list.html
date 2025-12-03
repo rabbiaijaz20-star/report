@@ -1,0 +1,33 @@
+{% extends 'report/base.html' %}
+{% load static %}
+
+{% block title %}Tickets{% endblock %}
+
+{% block content %}
+<h2>All Tickets</h2>
+
+<a href="{% url 'report:ticket_create' %}" class="btn">Add New Ticket</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Show</th>
+            <th>Seat Number</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.show.title }}</td>
+            <td>{{ ticket.seat_number }}</td>
+            <td>{{ ticket.price }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No tickets found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'report/base.html' %}
+
+{% block title %}Sell Ticket{% endblock %}
+
+{% block content %}
+<h2>Sell Ticket</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Sell Ticket</button>
+</form>
+{% endblock %}

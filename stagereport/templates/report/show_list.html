@@ -1,0 +1,45 @@
+{% extends 'report/base.html' %}
+{% load static %}
+
+{% block title %}Shows{% endblock %}
+
+{% block content %}
+<h2>All Shows</h2>
+
+<a href="{% url 'report:show_create' %}" class="btn">Add New Show</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Theater</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for show in shows %}
+        <tr>
+            <td>{{ show.title }}</td>
+            <td>{{ show.theater.name|default:"N/A" }}</td>
+            <td>
+                {% if show.date %}
+                    {{ show.date|date:"M d, Y H:i" }}
+                {% else %}
+                    N/A
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'report:show_detail' show.pk %}">View</a> |
+                <a href="{% url 'report:show_update' show.pk %}">Edit</a> |
+                <a href="{% url 'report:show_delete' show.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No shows found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

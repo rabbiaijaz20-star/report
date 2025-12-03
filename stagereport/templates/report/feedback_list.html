@@ -1,0 +1,39 @@
+{% extends 'report/base.html' %}
+{% load static %}
+
+{% block title %}Feedbacks{% endblock %}
+
+{% block content %}
+<h2>All Feedbacks</h2>
+
+<a href="{% url 'report:feedback_create' %}" class="btn">Add Feedback</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Message</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for feedback in feedbacks %}
+        <tr>
+            <td>{{ feedback.user.username }}</td>
+            <td>{{ feedback.message }}</td>
+            <td>{{ feedback.date|date:"M d, Y H:i" }}</td>
+            <td>
+                <a href="{% url 'report:feedback_detail' feedback.pk %}">View</a> |
+                <a href="{% url 'report:feedback_update' feedback.pk %}">Edit</a> |
+                <a href="{% url 'report:feedback_delete' feedback.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No feedbacks found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
